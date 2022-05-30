@@ -1,0 +1,48 @@
+@startuml
+class Hôtel{
+    +adresse String
+    +nbPièces int
+    +catégorie String
+}
+class Personne{
+    +nom String
+    +prénom String 
+    +age : int
+}
+
+class Personnel{
+    +salaire float
+    +estDirecteur Boolean
+}
+note top:context Personnel inv employés:\n self.age > 16
+
+
+class Chambre{
+    +nbLits int
+    +prix float
+    +numéro int
+    +sdb SDB
+}
+
+class Réservation{
+    +numRéservation String
+    +dateArrivé date
+    +dateDépart date
+    +loyerPayé float
+}
+
+enum SDB{
+    douche
+    baignoire
+}
+
+Personne <|-- Personnel
+Hôtel "1..1" *-- "2..*" Chambre
+Personnel "1..*" <-> "1..1" Hôtel : travaillerDans
+Personne "1..*" <-> "1..*" Hôtel :séjourne​
+Personne "1..1" <-> "0..*" Réservation : réserve
+Chambre -> "0..*" Réservation : concernéePar
+Réservation -> "1..1" Chambre : concerne
+
+
+@enduml

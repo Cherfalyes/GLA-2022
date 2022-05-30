@@ -1,0 +1,5 @@
+Rappel du diagramme de classe d'hôtel avec les deux façons de faire en se basant sur les diapos
+Refaire la partie du mapping entre le diagramme de classes, et le code source Java correspondant
+(J'ai retiré la classe occupants car elle ne sert à rien, j'ai aussi retiré la classe Mineur car ça ne sert à rien)
+
+
