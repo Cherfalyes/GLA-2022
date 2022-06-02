@@ -17,7 +17,29 @@ L'objectif de ce TP est de se familiariser avec la notion de tests, ainsi que d'
 
 6. Ajouter des tests aux limites que vous jugerez pertinents
 
-## Exercice 02 : TDD
-Le du lien suivant représente un ensemble de tests unitaires sur python. On souhaiterait à partir de cet ensemble de tests concevoir une 
+## Exercice 02 : Distance d’arrêt d’un véhicule  
 
-## Exercice 03 : correction de code
+Pour calculer la distance d’arrêt d’un véhicule, on applique la formule  :  
+$$distanceArret = reaction + freinage $$
+-  « reaction » est la distance parcourue par la voiture pendant le temps de réaction  
+du conducteur ;   
+$$reaction = vitesse/3.6$$
+- « freinage » est la distance parcourue par la voiture pendant le temps de freinage ;  
+$$freinage = vitesse^2/200$$
+Remarque :  
+Pour les différentes fonctions à écrire, vous devez incorporer au moins 2 tests unitaires par  
+fonctions. Les résultats devront être arrondis au mètre près.  
+1.  Écrire une fonction  «  reaction(v) »  qui à partir de la vitesse du véhicule retourne la  
+distance de réaction.  
+2.  Écrire une fonction  «  freinage(v) »  qui à partir de la vitesse du véhicule retourne la  
+distance de freinage.  
+3.   Écrire une fonction «  distanceArret(v) »  qui à partir de la vitesse du véhicule retourne la distance totale d'arrêt.
+4. Écrire un programme qui demande la vitesse a vitesse du véhicule à l’utilisateur et qui affiche la distance d’arrêt.  
+5. Améliorer l'algorithme pour qu'il demande en plus la distance D à laquelle se situe un obstacle et indique si le conducteur pourra freiner à temps quand il l'aperçoit.
+6.  Sur route mouillée, on estime que la distance de freinage est multipliée par 2.  
+Demander l’état de la route à l’utilisateur et  modifier la fonction  « freinage(v) »  pour  calculer la distance de freinage en conséquence
+
+## Exercice 03 : Déveleppement dirigé par les tests
+Le fichier "execises.py" comprend un ensemble de tests unitaires écrits en Python. 
+1. Dans un premier temps, lancez ces tests et vérifiez qu'ils ne passent pas. 
+2. Dans un second temps, il vous est demandé de compléter le code des fonctions afin que les tests soient satisfaits.
