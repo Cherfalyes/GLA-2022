@@ -1,10 +1,13 @@
 @startuml MonAuto
-TypeDeReparation --> Reparation
-Client "1..*" --> "1..*" Vehicule
+Client "1..*" <--> "1..*" Vehicule
 Client "1..1" *-- "0..*" Reparation
 Vehicule "1..1" *-- "0..*" Reparation
 Vehicule " 1..1" *-- "1..1" Immatriculation
 AccidentAssuranceError ..|> Reparation
+WrongImmatruclationError ..|> Immatriculation
+Sinistre --> Assurance
+Garantie --> VehiculeVenduParMonAuto
+
 
 class Immatriculation {
     - __immatriculation: String
@@ -42,7 +45,7 @@ class Vehicule {
     + __del__(): String
 }
 
-class Vente extends Vehicule {
+class VehiculeVenduParMonAuto extends Vehicule {
     - __dateDeLivraison: Date
     + getDateDeLivraison(): Date
     + setDateDeLivraison(dateDeLivraison: Date)
@@ -50,11 +53,10 @@ class Vente extends Vehicule {
     + __init__(marque: String, modele: String, couleur: String, anneeDeMiseEnCirculation: Int, dateDeLivraison: Date)
 }
 
-class Reparation {
+abstract Reparation {
     - __dateDeLaDemande: Date
     - __dateDeRecuperation: Date
     - __dateDeRestitution: Date
-    - __TypeDeReparation: TypeDeReparation
     - __moyenDePayement: String
     - __prix: Int
     + getDateDeLaDemande(): Date
@@ -70,7 +72,7 @@ class Reparation {
     + getPrix(): Int
     + setPrix(prix: Int)
     + envoyerUneFacture(vehicule: Vehicule, dateDeRecuperation: Date, dateDeRestitution: Date, prix: Int)
-    + __init__(dateDeLaDemande: Date, dateDeRecuperation: Date, dateDeRestitution: Date, typeDeReparation: TypeDeReparation, moyenDePayement: String, prix: Int)
+    + __init__(dateDeLaDemande: Date, dateDeRecuperation: Date, dateDeRestitution: Date, moyenDePayement: String, prix: Int)
     + __str__(): String
     + __eq__(other: Reparation): Boolean
     + __ne__(other: Reparation): Boolean
@@ -79,23 +81,42 @@ class Reparation {
     + __del__(): String
 }
 
-enum TypeDeReparation {
-    + GARANTIE
-    + SINISTRE
-    + ENTRETIEN
-    + AUTRE
+class Sinistre extends Reparation {
+    - __dateDuSinistre: Date
+    - __lieuDuSinistre: String
+    - __descriptionDuSinistre: String
+    + getDateDuSinistre(): Date
+    + setDateDuSinistre(dateDuSinistre: Date)
+    + getLieuDuSinistre(): String
+    + setLieuDuSinistre(lieuDuSinistre: String)
+    + getDescriptionDuSinistre(): String
+    + setDescriptionDuSinistre(descriptionDuSinistre: String)
+    + __init__(dateDeLaDemande: Date, dateDeRecuperation: Date, dateDeRestitution: Date, moyenDePayement: String, prix: Int, dateDuSinistre: Date, lieuDuSinistre: String, descriptionDuSinistre: String)
 }
 
+class Garantie extends Reparation {
+    + __init__(dateDeLaDemande: Date, dateDeRecuperation: Date, dateDeRestitution: Date, moyenDePayement: String, prix: Int)
+}
+
+class Autre extends Reparation {
+    + __description: String
+    + getDescription(): String
+    + setDescription(description: String)
+    + __init__(dateDeLaDemande: Date, dateDeRecuperation: Date, dateDeRestitution: Date, moyenDePayement: String, prix: Int, description: String)
+}
+
+
 abstract Client {
-    - __numeroDeClient: UUID
+    - __numeroDeClient: Int
     - __telephone: String
-    - __email: Email
-    + getNumeroDeClient(): UUID
-    + setNumeroDeClient(numeroDeClient: UUID)
+    - __email: String
+    + getNumeroDeClient(): Int
+    + setNumeroDeClient(numeroDeClient: Int)
     + getTelephone(): String
     + setTelephone(telephone: String)
-    + getEmail(): Email
-    + setEmail(email: Email)
+    + getEmail(): String
+    + setEmail(email: String)
+    + __init__(numeroDeClient: Int, telephone: String, email: String)
     + __str__(): String
     + __eq__(other: Client): Boolean
     + __ne__(other: Client): Boolean
@@ -120,7 +141,7 @@ class Assurance extends Client {
     + setCodePostal(codePostal: String)
     + getVille(): String
     + setVille(ville: String)
-    + __init__(numeroDeClient: UUID, telephone: String, email: Email, nom: String, siret: String, adresse: String, codePostal: String, ville: String)
+    + __init__(numeroDeClient: Int, telephone: String, email: String, nom: String, siret: String, adresse: String, codePostal: String, ville: String)
     + __str__(): String
     + __eq__(other: Assurance): Boolean
     + __ne__(other: Assurance): Boolean
@@ -142,7 +163,7 @@ class Particulier extends Client {
     + getDateDeNaissance(): Date
     + setDateDeNaissance(dateDeNaissance: Date)
     + vendreSonVehicule(vehicule: Vehicule)
-    + __init__(numeroDeClient: UUID, telephone: String, email: Email, nom: String, prenom: String, adresse: String, dateDeNaissance: Date)
+    + __init__(numeroDeClient: Int, telephone: String, email: String, nom: String, prenom: String, adresse: String, dateDeNaissance: Date)
     + __str__(): String
     + __eq__(other: Particulier): Boolean
     + __ne__(other: Particulier): Boolean
@@ -165,8 +186,15 @@ class AccidentAssuranceError extends Error {
     - __vehicule: Vehicule
     + __init__(message: String, reparation: Reparation, client: Client, vehicule: Vehicule)
     + __str__(): String
-    + __eq__(other: Error): Boolean
-    + __ne__(other: Error): Boolean
+    + __repr__(): String
+    + __doc__(): String
+}
+
+class WrongImmatruclationError extends Error {
+    - __immatruclation: Immatruclation
+    + __init__(message: String, immatruclation: Immatruclation)
+    + __str__(): String
+    + __repr__(): String
     + __doc__(): String
 }
 
