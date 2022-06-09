@@ -43,3 +43,12 @@ Demander l’état de la route à l’utilisateur et  modifier la fonction  « f
 Le fichier "execises.py" comprend un ensemble de tests unitaires écrits en Python. 
 1. Dans un premier temps, lancez ces tests et vérifiez qu'ils ne passent pas. 
 2. Dans un second temps, il vous est demandé de compléter le code des fonctions afin que les tests soient satisfaits.
+
+## Remise des codes et notation :
+Les codes des trois exercices (fortement commentés et chaque exercice dans un répertoire à part) sont à remettre dans un fichier ZIP sous le format Nom_Prénom_Tests.zip (Nom1_Nom2_Tests.zip pour les binômes) dans le répertoire google drive suivant :
+(https://drive.google.com/drive/folders/1oXEO6quANaVknfbUeRMteUxdGK-Ka-YC)[https://drive.google.com/drive/folders/1oXEO6quANaVknfbUeRMteUxdGK-Ka-YC]
+
+Ce TP constitue la note de CC.
+
+La date limite de remise des codes est pour le vendredi 10 juin 2022.
+
