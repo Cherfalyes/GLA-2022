@@ -46,7 +46,7 @@ Le fichier "execises.py" comprend un ensemble de tests unitaires écrits en Pyth
 
 ## Remise des codes et notation :
 Les codes des trois exercices (fortement commentés et chaque exercice dans un répertoire à part) sont à remettre dans un fichier ZIP sous le format Nom_Prénom_Tests.zip (Nom1_Nom2_Tests.zip pour les binômes) dans le répertoire google drive suivant :
-(https://drive.google.com/drive/folders/1oXEO6quANaVknfbUeRMteUxdGK-Ka-YC)[https://drive.google.com/drive/folders/1oXEO6quANaVknfbUeRMteUxdGK-Ka-YC]
+https://drive.google.com/drive/folders/1oXEO6quANaVknfbUeRMteUxdGK-Ka-YC
 
 Ce TP constitue la note de CC.
 
